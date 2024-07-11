@@ -5,6 +5,5 @@
   "trailingComma": "none",
   "bracketSpacing": true,
   "singleQuote": true,
-  "printWidth": 140,
-  "plugins": ["@trivago/prettier-plugin-sort-imports", "prettier-plugin-organize-attributes", "prettier-plugin-tailwindcss"]
+  "printWidth": 140
 }
