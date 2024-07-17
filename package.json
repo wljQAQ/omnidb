@@ -7,12 +7,19 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "turbo run dev"
   },
+  "type": "module",
   "author": "",
   "license": "ISC",
   "packageManager": "pnpm@9.5.0",
   "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^4.3.0",
+    "@types/node": "18.13.0",
     "dotenv": "^16.4.5",
+    "eslint": "^8.34.0",
+    "prettier": "^2.8.4",
+    "prettier-plugin-tailwindcss": "^0.6.5",
     "turbo": "^2.0.6",
-    "typescript": "^5.5.3"
+    "typescript": "^5.5.3",
+    "vite": "^5.3.4"
   }
 }
