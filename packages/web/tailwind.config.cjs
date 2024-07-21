@@ -3,7 +3,7 @@ import plugin from 'tailwindcss/plugin';
 module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   plugins: [
-    plugin(function ({ addUtilities }) {
+    plugin(({ addUtilities }) => {
       addUtilities({
         '.flex-center': {
           display: 'flex',

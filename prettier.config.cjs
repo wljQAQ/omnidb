@@ -1,22 +1,31 @@
-module.exports= {
-  "semi": true,
-  "tabWidth": 2,
-  "arrowParens": "avoid",
-  "trailingComma": "none",
-  "bracketSpacing": true,
-  "singleQuote": true,
-  "printWidth": 140,
-  "plugins": ["prettier-plugin-tailwindcss","@trivago/prettier-plugin-sort-imports"],
+/** @type {import('prettier').Config} */
+module.exports = {
+  semi: true,
+  tabWidth: 2,
+  arrowParens: 'avoid',
+  trailingComma: 'none',
+  bracketSpacing: true,
+  singleQuote: true,
+  printWidth: 140,
   importOrder: [
-    'react', // React itself
-    '<THIRD_PARTY_MODULES>', // node_modules
-    '^(cplibrary|cpicons|cputil|cpclient|@cpclient|cpshots).*$', // Workspace packages
-    'components/.*$', // React Components
-    '^(constants|data|hooks|util|utils)/.*$', // Various helpers
-    '^(\\.|\\.\\.)/(.(?!.(css|scss)))*$', // Any local imports that AREN'T styles.
-    '\\.(css|scss)$' // Styles
+    '^(react/(.*)$)|^(react$)',
+    '^(next/(.*)$)|^(next$)',
+    '<THIRD_PARTY_MODULES>',
+    '^(cplibrary|cpicons|cputil|cpclient|@cpclient|cpshots).*$',
+    '',
+    '^types$',
+    '^@/types/(.*)$',
+    '^@/config/(.*)$',
+    '^@/lib/(.*)$',
+    '^@/hooks/(.*)$',
+    '^@/components/ui/(.*)$',
+    '^@/components/(.*)$',
+    '^@/registry/(.*)$',
+    '^@/styles/(.*)$',
+    '^@/app/(.*)$',
+    '',
+    '^[./]'
   ],
-  importOrderSeparation: true,
-  importOrderSortSpecifiers: true,
-  importOrderCaseInsensitive: true
-}
+  importOrderParserPlugins: ['typescript', 'jsx', 'decorators-legacy'],
+  plugins: ['@ianvs/prettier-plugin-sort-imports', 'prettier-plugin-tailwindcss']
+};
