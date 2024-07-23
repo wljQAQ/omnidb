@@ -1,6 +1,6 @@
 import { projects } from '@/mock';
 import { PlusCircleOutlined, PlusOutlined } from '@ant-design/icons';
-import { Button, Layout, Modal, Tree } from 'antd';
+import { Button, Card, Layout, Modal, Tree } from 'antd';
 
 const { Header, Content, Sider } = Layout;
 
@@ -33,15 +33,10 @@ export default function index() {
 
       <Layout>
         <Header className="border-b border-gray-200 bg-white">header</Header>
-        <Content className="bg-white">
-          <div className="p-5">
-            <div className="px-4 py-5">
-              <div className="text-lg font-bold">
-                <PlusOutlined />
-              </div>
-              <div>新的 表格</div>
-            </div>
-          </div>
+        <Content className="bg-white p-5">
+          <Card hoverable className="w-52 cursor-pointer" size="small" title="新建表格">
+            新的 表格
+          </Card>
         </Content>
       </Layout>
     </Layout>
