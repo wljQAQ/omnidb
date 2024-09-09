@@ -5,34 +5,56 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "turbo run dev"
+    "dev": "turbo run dev",
+    "lint": "eslint .",
+    "commit": "git add . && cz",
+    "prepare": "husky"
   },
   "type": "module",
   "author": "",
   "license": "ISC",
   "packageManager": "pnpm@9.5.0",
   "devDependencies": {
+    "@commitlint/cli": "^19.4.0",
+    "@commitlint/config-conventional": "^19.2.2",
+    "@commitlint/cz-commitlint": "^19.4.0",
+    "commitizen": "^4.3.0",
+    "lint-staged": "^15.2.9",
     "@ianvs/prettier-plugin-sort-imports": "^4.3.1",
     "@types/node": "18.13.0",
-    "@typescript-eslint/eslint-plugin": "^7.16.1",
-    "@typescript-eslint/parser": "^7.16.1",
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "@typescript-eslint/parser": "^7.18.0",
     "dotenv": "^16.4.5",
     "eslint": "^8.57.0",
-    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^18.0.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-import-resolver-alias": "^1.1.2",
-    "eslint-import-resolver-typescript": "^3.6.1",
-    "eslint-plugin-import": "^2.29.1",
-    "eslint-plugin-json": "^4.0.0",
+    "eslint-import-resolver-typescript": "^3.6.3",
+    "eslint-plugin-import": "^2.30.0",
+    "eslint-plugin-json": "^4.0.1",
     "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "eslint-plugin-unused-imports": "^3.2.0",
-    "pnpm": "^9.5.0",
+    "husky": "^9.1.5",
+    "pnpm": "^9.9.0",
     "prettier": "^3.3.3",
-    "prettier-plugin-tailwindcss": "^0.6.5",
-    "turbo": "^2.0.9",
-    "typescript": "^5.5.3",
-    "vite": "^5.3.4"
+    "prettier-plugin-tailwindcss": "^0.6.6",
+    "turbo": "^2.1.1",
+    "typescript": "^5.5.4",
+    "vite": "^5.4.3"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": "pnpm exec eslint"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./cz-adapter.cjs"
+    }
   }
 }
