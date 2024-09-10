@@ -58,5 +58,8 @@
     "commitizen": {
       "path": "./cz-adapter.cjs"
     }
+  },
+  "dependencies": {
+    "react": "^18.3.1"
   }
 }

@@ -2,7 +2,7 @@
   "$schema": "https://json.schemastore.org/eslintrc",
   "root": true,
   "extends": ["airbnb", "prettier"],
-  "plugins": ["json", "prettier"],
+  "plugins": ["json"],
   "env": {
     "es2020": true
   },
@@ -37,11 +37,10 @@
     {
       "files": ["**/*.ts", "**/*.mts", "**/*.tsx"],
       "parser": "@typescript-eslint/parser",
-      "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended", "airbnb", "airbnb-typescript", "prettier"],
       "parserOptions": {
         "project": ["./tsconfig.json", "./packages/*/tsconfig.json"]
       },
-      "plugins": ["@typescript-eslint", "unused-imports", "prettier"],
+      "plugins": ["@typescript-eslint", "unused-imports"],
       "rules": {
         "prettier/prettier": [
           "error",
