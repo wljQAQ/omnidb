@@ -9,14 +9,17 @@ module.exports = {
   printWidth: 140,
   importOrder: [
     '^(react/(.*)$)|^(react$)',
-    '^(next/(.*)$)|^(next$)',
+    '',
+    '^(antd)|^(@ant-design)',
+    '',
     '<THIRD_PARTY_MODULES>',
-    '^(cplibrary|cpicons|cputil|cpclient|@cpclient|cpshots).*$',
     '',
     '^types$',
-    '^@/**/(.*)$',
     '',
-    '^[./]'
+    '^@/(.*)$',
+    '',
+    '^[./]',
+    ''
   ],
   importOrderParserPlugins: ['typescript', 'jsx', 'decorators-legacy'],
   plugins: ['@ianvs/prettier-plugin-sort-imports', 'prettier-plugin-tailwindcss']
