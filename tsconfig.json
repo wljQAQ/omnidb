@@ -10,14 +10,19 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "module": "ESNext",
-    "moduleResolution": "Node",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
+    "composite": true,
+    "incremental": true,
     "noEmit": true,
     "jsx": "react-jsx",
+    "baseUrl": ".",
     "paths": {
-      "@omnidb/component/*": ["./packages/frontend/component/src/*"],
-      "@omnidb/gui/*": ["./packages/frontend/gui/src/*"]
+      //frontend
+      "@omnidb/gui/*": ["./packages/frontend/gui/src/*"],
+      "@omnidb/component": ["./packages/frontend/component/src/index"],
+      "@omnidb/component/*": ["./packages/frontend/component/src/components/*/index", "./packages/frontend/component/src/components/*"]
     }
   },
   "exclude": ["node_modules", "target", "lib", "test-results", "dist"]

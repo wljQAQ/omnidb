@@ -1,10 +1,11 @@
 import { PlusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 import { Button, Card, Layout, Modal, Tree } from 'antd';
 
+import { BITable } from '@omnidb/component/bi-table';
+
 import { projects } from '@/mock';
 
 const { Header, Content, Sider } = Layout;
-
 const newProjectModal = {
   title: 'Use Hook!',
   content: (
@@ -24,9 +25,7 @@ export default function index() {
           <Tree treeData={projects} fieldNames={{ key: 'id' }} blockNode={true}></Tree>
         </Sider>
         <Content className="bg-white p-5">
-          <Card hoverable className="w-52 cursor-pointer" size="small" title="新建表格">
-            新的 表格
-          </Card>
+          <BITable></BITable>
         </Content>
       </Layout>
     </Layout>

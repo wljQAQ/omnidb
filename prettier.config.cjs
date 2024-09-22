@@ -12,6 +12,8 @@ module.exports = {
     '',
     '^(antd)|^(@ant-design)',
     '',
+    '^@omnidb/(.*)$',
+    '',
     '<THIRD_PARTY_MODULES>',
     '',
     '^types$',
