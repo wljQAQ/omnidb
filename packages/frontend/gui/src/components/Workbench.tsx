@@ -1,6 +1,7 @@
 import { PlusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 import { Button, Card, Layout, Modal, Tree } from 'antd';
 
+import { BIMenu } from '@omnidb/component/bi-menu';
 import { BITable } from '@omnidb/component/bi-table';
 
 import { projects } from '@/mock';
@@ -23,6 +24,7 @@ export default function index() {
       <Layout>
         <Sider className="border-r border-gray-200" theme="light">
           <Tree treeData={projects} fieldNames={{ key: 'id' }} blockNode={true}></Tree>
+          <BIMenu></BIMenu>
         </Sider>
         <Content className="bg-white p-5">
           <BITable></BITable>

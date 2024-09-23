@@ -1,7 +1,9 @@
+import path from 'node:path';
+
 import plugin from 'tailwindcss/plugin';
 
-module.exports = {
-  content: ['./src/**/*.{js,jsx,ts,tsx}', './packages/frontend/component/src/**/*.{js,jsx,ts,tsx}'],
+export default {
+  content: ['./src/**/*.{js,jsx,ts,tsx}', path.resolve(__dirname, './packages/frontend/component/src/**/*.{js,jsx,ts,tsx}')],
   theme: {
     extend: {
       padding: {
@@ -21,7 +23,7 @@ module.exports = {
         muted: '--color-text-muted'
       },
       borderColor: {
-        divider: 'rgb(240, 240, 240)'
+        divider: '#DEE0E3'
       }
     }
   },

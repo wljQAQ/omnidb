@@ -37,7 +37,7 @@ export const Head = ({ header }: { header: HeaderProps<any, unknown> }) => {
   return (
     <th
       ref={setNodeRef}
-      className={`p-${size} border-divider bg-containHeader relative flex cursor-pointer select-none flex-wrap items-center border-b p-4 text-left font-semibold`}
+      className={`relative flex cursor-pointer select-none flex-wrap items-center border-b border-r bg-containHeader text-left font-semibold`}
       style={style}
       colSpan={header.colSpan}
       onClick={handleClick}
@@ -47,24 +47,22 @@ export const Head = ({ header }: { header: HeaderProps<any, unknown> }) => {
       {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
 
       {/* 排序图标 */}
-      <span className="pl-3 text-xs font-normal">
+      {/* <span className="pl-3 text-xs font-normal">
         {{
           asc: <UpOutlined />,
           desc: <DownOutlined />
         }[header.column.getIsSorted() as string] ?? null}
-      </span>
+      </span> */}
       {/* {header.column.getCanFilter() ? (
         <div className="w-full" onClick={e => e.stopPropagation()}>
           <Filter column={header.column} table={table} />
         </div>
       ) : null} */}
       <div
-        className="absolute right-0 top-1/2 z-10 -translate-y-1/2 cursor-ew-resize p-2"
+        className="absolute right-0 h-full w-3 translate-x-1/2 cursor-ew-resize"
         onMouseDown={handleResize}
         onClick={e => e.stopPropagation()}
-      >
-        <Divider type="vertical" />
-      </div>
+      ></div>
     </th>
   );
 };

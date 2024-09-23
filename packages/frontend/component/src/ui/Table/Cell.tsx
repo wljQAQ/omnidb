@@ -20,7 +20,11 @@ export const Cell = ({ cell }: Props) => {
   };
 
   return (
-    <td className={`border-divider relative select-none p-${size}`} style={{ width: cell.column.getSize() }} onDoubleClick={handleDblClick}>
+    <td
+      className={`relative select-none border-b border-r `}
+      style={{ width: cell.column.getSize() }}
+      onDoubleClick={handleDblClick}
+    >
       {cell.id === meta!.cellEditing ? <EditCell cell={cell} /> : flexRender(cell.column.columnDef.cell, cell.getContext())}
     </td>
   );
@@ -37,7 +41,7 @@ function EditCell({ cell }: Props) {
 
   return (
     <>
-      <div className="flex-center absolute left-0 top-0 h-full w-full">
+      <div className="absolute left-0 top-0 h-full w-full flex-center">
         <Input value={value} onChange={e => setValue(e.target.value)} onBlur={onBlur} autoFocus />
       </div>
     </>

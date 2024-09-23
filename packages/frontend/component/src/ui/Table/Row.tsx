@@ -5,5 +5,5 @@ type RowProps = React.HTMLAttributes<HTMLTableRowElement> & {
 };
 
 export const Row = forwardRef<HTMLTableRowElement, RowProps>((props, ref) => {
-  return <tr ref={ref} className="border-divider hover:bg-header flex w-full border-b" {...props}></tr>;
+  return <tr ref={ref} className="hover:bg-header flex" {...props}></tr>;
 });
