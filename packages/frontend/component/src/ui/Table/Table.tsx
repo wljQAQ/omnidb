@@ -106,8 +106,8 @@ export const Table = ({ columns, data: DefaultData, size, globalFilter, columnFi
 
   return (
     <DndContext collisionDetection={closestCenter} modifiers={[restrictToHorizontalAxis]} onDragEnd={handleDragEnd} sensors={sensors}>
-      <div ref={tableContainerRef} className="table-box relative h-full overflow-auto">
-        <table className="relative grid" style={{ transition: 'padding 0.2s ease 0s' }}>
+      <div ref={tableContainerRef} className="relative h-full overflow-auto">
+        <table className="border-divider relative grid border" style={{ transition: 'padding 0.2s ease 0s' }}>
           <Header className="sticky top-0 z-10 grid">
             {table.getHeaderGroups().map(headerGroup => (
               <Row className="flex w-full" key={headerGroup.id}>
