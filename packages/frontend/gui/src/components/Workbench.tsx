@@ -24,7 +24,7 @@ export default function index() {
       <Layout>
         <Sider className="border-r border-gray-200" theme="light">
           <Tree treeData={projects} fieldNames={{ key: 'id' }} blockNode={true}></Tree>
-          <BIMenu></BIMenu>
+          {/* <BIMenu></BIMenu> */}
         </Sider>
         <Content className="bg-white p-5">
           <BITable></BITable>
