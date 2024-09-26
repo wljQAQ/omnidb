@@ -1,5 +1,7 @@
 import { useRef, useState } from 'react';
 
+import { PlusOutlined } from '@ant-design/icons';
+
 import { closestCenter, DndContext } from '@dnd-kit/core';
 import { restrictToHorizontalAxis } from '@dnd-kit/modifiers';
 import { horizontalListSortingStrategy, SortableContext } from '@dnd-kit/sortable';
@@ -106,7 +108,7 @@ export const Table = ({ columns, data: DefaultData, size, globalFilter, columnFi
 
   return (
     <DndContext collisionDetection={closestCenter} modifiers={[restrictToHorizontalAxis]} onDragEnd={handleDragEnd} sensors={sensors}>
-      <div ref={tableContainerRef} className="relative h-full overflow-auto">
+      <div ref={tableContainerRef} className="relative h-fit w-fit">
         <table className="relative grid w-fit border-l border-t" style={{ transition: 'padding 0.2s ease 0s' }}>
           <Header>
             {table.getHeaderGroups().map(headerGroup => (
@@ -154,6 +156,16 @@ export const Table = ({ columns, data: DefaultData, size, globalFilter, columnFi
             {/* <CellsRange cellsRange={cellsRange}></CellsRange> */}
           </Body>
         </table>
+
+        {/* 新增列 */}
+        <div className="absolute right-0 top-0 h-full translate-x-full cursor-pointer rounded-r border border-l-0 border-divider px-2 text-gray-400">
+          <PlusOutlined />
+        </div>
+
+        {/* 新增行 */}
+        <div className="w-full cursor-pointer rounded-bl border border-r-0 border-t-0 border-divider px-2 text-gray-400">
+          <PlusOutlined />
+        </div>
       </div>
     </DndContext>
   );

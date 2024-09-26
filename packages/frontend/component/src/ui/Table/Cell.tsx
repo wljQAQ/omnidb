@@ -39,8 +39,29 @@ function EditCell({ cell }: Props) {
     <>
       <div className="absolute left-0 top-0 z-20 h-full w-full border-2 border-blue-500 flex-center">
         {/* <Input value={value} onChange={e => setValue(e.target.value)} onBlur={onBlur} autoFocus /> */}
+        <EditCellInput cell={cell} />
       </div>
     </>
+  );
+}
+
+function EditCellInput({ cell }: Props) {
+  const { meta } = cell.getContext().table.options;
+  const [value, setValue] = useState(cell.getValue());
+
+  function onBlur() {
+    meta?.setCellEditing('');
+    meta?.updateData(cell.row.index, cell.column.id, value);
+  }
+
+  return (
+    <input
+      className="h-full w-full overflow-hidden outline-none"
+      value={value}
+      onChange={e => setValue(e.target.value)}
+      onBlur={onBlur}
+      autoFocus
+    />
   );
 }
 
