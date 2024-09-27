@@ -4,8 +4,6 @@ import { Button, Card, Layout, Modal, Tree } from 'antd';
 import { BIMenu } from '@omnidb/component/bi-menu';
 import { BITable } from '@omnidb/component/bi-table';
 
-import { projects } from '@/mock';
-
 const { Header, Content, Sider } = Layout;
 const newProjectModal = {
   title: 'Use Hook!',
@@ -23,8 +21,7 @@ export default function index() {
 
       <Layout>
         <Sider className="border-r border-gray-200" theme="light">
-          <Tree treeData={projects} fieldNames={{ key: 'id' }} blockNode={true}></Tree>
-          {/* <BIMenu></BIMenu> */}
+          <BIMenu></BIMenu>
         </Sider>
         <Content className="bg-white p-5">
           <BITable></BITable>
