@@ -1,9 +1,9 @@
-import { a } from '@omnidb/component';
+import { RouterProvider } from 'react-router-dom';
 
-import Layout from './components/Workbench';
+import router from './router';
 
 function App() {
-  return <Layout></Layout>;
+  return <RouterProvider router={router}></RouterProvider>;
 }
 
 export default App;

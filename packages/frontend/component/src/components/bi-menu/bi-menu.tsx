@@ -34,8 +34,8 @@ function MenuExtraButton() {
     }
   ];
   return (
-    <Dropdown menu={{ items }}>
-      <Button icon={<MoreOutlined />} color="default" variant="text"></Button>
+    <Dropdown menu={{ items }} trigger={['click']}>
+      <MoreOutlined />
     </Dropdown>
   );
 }
