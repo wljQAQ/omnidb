@@ -4,6 +4,8 @@ import { Button, Card, Layout, Modal, Tree } from 'antd';
 import { BIMenu } from '@omnidb/component/bi-menu';
 import { BITable } from '@omnidb/component/bi-table';
 
+import { useParams } from 'react-router-dom';
+
 const { Header, Content, Sider } = Layout;
 const newProjectModal = {
   title: 'Use Hook!',
@@ -15,6 +17,8 @@ const newProjectModal = {
 };
 
 export default function index() {
+  const { bitableId } = useParams();
+  console.log(bitableId, useParams());
   return (
     <Layout className="h-full">
       <Header className="border-b border-gray-200 bg-white">header</Header>

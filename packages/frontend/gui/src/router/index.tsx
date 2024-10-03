@@ -6,7 +6,7 @@ const Table = React.lazy(() => import('../components/Workbench'));
 
 const routes: RouteObject[] = [
   {
-    path: '/',
+    path: '/:bitableId',
     element: <Table />
   }
 ];
