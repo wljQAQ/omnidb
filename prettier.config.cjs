@@ -14,6 +14,8 @@ module.exports = {
     '',
     '^@omnidb/(.*)$',
     '',
+    '^@nestjs',
+    '',
     '<THIRD_PARTY_MODULES>',
     '',
     '^types$',
