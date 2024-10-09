@@ -1,5 +1,5 @@
 {
-  "name": "@omnidb/web",
+  "name": "@omnidb/gui",
   "version": "0.0.0",
   "scripts": {
     "dev": "vite --open",
@@ -10,6 +10,7 @@
   "dependencies": {
     "@ant-design/icons": "^5.5.1",
     "@omnidb/component": "workspace:*",
+    "@omnidb/graphql": "workspace:*",
     "antd": "^5.21.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
