@@ -23,7 +23,7 @@
       "@omnidb/gui/*": ["./packages/frontend/gui/src/*"],
       "@omnidb/component": ["./packages/frontend/component/src/index"],
       "@omnidb/component/*": ["./packages/frontend/component/src/components/*/index", "./packages/frontend/component/src/components/*"],
-      "@omnidb/graphql": ["./packages/frontend/graphql/src/index"]
+      "@omnidb/request": ["./packages/frontend/request/src/index"]
     }
   },
   "exclude": ["node_modules", "target", "lib", "test-results", "dist"]

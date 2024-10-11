@@ -234,25 +234,6 @@ importers:
         specifier: ^4.3.1
         version: 4.3.1(vite@5.4.7(@types/node@20.16.5)(terser@5.31.3))
 
-  packages/frontend/graphql:
-    dependencies:
-      '@graphql-typed-document-node/core':
-        specifier: ^3.2.0
-        version: 3.2.0(graphql@16.9.0)
-      graphql:
-        specifier: ^16.9.0
-        version: 16.9.0
-      graphql-request:
-        specifier: ^7.1.0
-        version: 7.1.0(graphql@16.9.0)
-    devDependencies:
-      '@graphql-codegen/cli':
-        specifier: 5.0.3
-        version: 5.0.3(@types/node@20.16.5)(graphql@16.9.0)(typescript@5.6.2)
-      '@graphql-codegen/client-preset':
-        specifier: 4.4.0
-        version: 4.4.0(graphql@16.9.0)
-
   packages/frontend/gui:
     dependencies:
       '@ant-design/icons':
@@ -261,9 +242,9 @@ importers:
       '@omnidb/component':
         specifier: workspace:*
         version: link:../component
-      '@omnidb/graphql':
+      '@omnidb/request':
         specifier: workspace:*
-        version: link:../graphql
+        version: link:../request
       antd:
         specifier: ^5.21.0
         version: 5.21.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -289,6 +270,43 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.3.1
         version: 4.3.1(vite@5.4.7(@types/node@20.16.5)(terser@5.31.3))
+
+  packages/frontend/request:
+    dependencies:
+      '@graphql-typed-document-node/core':
+        specifier: ^3.2.0
+        version: 3.2.0(graphql@16.9.0)
+      '@tanstack/react-query':
+        specifier: ^5.59.9
+        version: 5.59.9(react@18.3.1)
+      '@tanstack/react-query-devtools':
+        specifier: ^5.59.9
+        version: 5.59.9(@tanstack/react-query@5.59.9(react@18.3.1))(react@18.3.1)
+      graphql:
+        specifier: ^16.9.0
+        version: 16.9.0
+      graphql-request:
+        specifier: ^7.1.0
+        version: 7.1.0(graphql@16.9.0)
+      react:
+        specifier: ^18.3.1
+        version: 18.3.1
+      react-dom:
+        specifier: ^18.3.1
+        version: 18.3.1(react@18.3.1)
+    devDependencies:
+      '@graphql-codegen/cli':
+        specifier: 5.0.3
+        version: 5.0.3(@types/node@20.16.5)(graphql@16.9.0)(typescript@5.6.2)
+      '@graphql-codegen/client-preset':
+        specifier: 4.4.0
+        version: 4.4.0(graphql@16.9.0)
+      '@types/react':
+        specifier: ^18.3.5
+        version: 18.3.8
+      '@types/react-dom':
+        specifier: ^18.3.0
+        version: 18.3.0
 
 packages:
 
@@ -1908,6 +1926,23 @@ packages:
 
   '@sinonjs/fake-timers@10.3.0':
     resolution: {integrity: sha512-V4BG07kuYSUkTCSBHG8G8TNhM+F19jXFWnQtzj+we8DrkpSBCee9Z3Ms8yiGer/dlmhe35/Xdgyo3/0rQKg7YA==}
+
+  '@tanstack/query-core@5.59.9':
+    resolution: {integrity: sha512-vFGnblfJOKlOPyTR5M0ohWKb/03eGubh5KuGyzsDfc7VQ6F0nsB75kQIoLpwp3Wfj6fKv0wGoTUX8BsIfhxDfw==}
+
+  '@tanstack/query-devtools@5.58.0':
+    resolution: {integrity: sha512-iFdQEFXaYYxqgrv63ots+65FGI+tNp5ZS5PdMU1DWisxk3fez5HG3FyVlbUva+RdYS5hSLbxZ9aw3yEs97GNTw==}
+
+  '@tanstack/react-query-devtools@5.59.9':
+    resolution: {integrity: sha512-Vfr8JPgx4GxopQOqdQTC7MAUbX1vuEqeexCIX0RiwjUmNCoHKUg2Mh3rTZPsx8Y7wscc7eWkBjiz03Dt/YM3oQ==}
+    peerDependencies:
+      '@tanstack/react-query': ^5.59.9
+      react: ^18 || ^19
+
+  '@tanstack/react-query@5.59.9':
+    resolution: {integrity: sha512-g2cbiw/ZIIrnUaQqhGtarTAsuLdKDNLtY5HNfRHVWY9kHDj96M4qs4ygJxHc119tPQpzZe4i9W7d2Gc2Gvng2A==}
+    peerDependencies:
+      react: ^18 || ^19
 
   '@tanstack/react-table@8.20.5':
     resolution: {integrity: sha512-WEHopKw3znbUZ61s9i0+i9g8drmDo6asTWbrQh8Us63DAk/M0FkmIqERew6P71HI75ksZ2Pxyuf4vvKh9rAkiA==}
@@ -8527,6 +8562,21 @@ snapshots:
   '@sinonjs/fake-timers@10.3.0':
     dependencies:
       '@sinonjs/commons': 3.0.1
+
+  '@tanstack/query-core@5.59.9': {}
+
+  '@tanstack/query-devtools@5.58.0': {}
+
+  '@tanstack/react-query-devtools@5.59.9(@tanstack/react-query@5.59.9(react@18.3.1))(react@18.3.1)':
+    dependencies:
+      '@tanstack/query-devtools': 5.58.0
+      '@tanstack/react-query': 5.59.9(react@18.3.1)
+      react: 18.3.1
+
+  '@tanstack/react-query@5.59.9(react@18.3.1)':
+    dependencies:
+      '@tanstack/query-core': 5.59.9
+      react: 18.3.1
 
   '@tanstack/react-table@8.20.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
