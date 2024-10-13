@@ -2,7 +2,7 @@
   "name": "@omnidb/request",
   "version": "0.0.0",
   "scripts": {
-    "codegen": "graphql-codegen --config codegen.ts"
+    "dev": "graphql-codegen --config codegen.ts --watch"
   },
   "main": "./src/index.ts",
   "exports": {
@@ -11,6 +11,7 @@
   "devDependencies": {
     "@graphql-codegen/cli": "5.0.3",
     "@graphql-codegen/client-preset": "4.4.0",
+    "@parcel/watcher": "^2.4.1",
     "@types/react": "^18.3.5",
     "@types/react-dom": "^18.3.0"
   },
