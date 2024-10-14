@@ -5,7 +5,7 @@ const config: CodegenConfig = {
   overwrite: true,
   documents: ['./src/**/*.ts'], // 修改这一行
   generates: {
-    './src/gql/': {
+    './src/graphql/gql/': {
       preset: 'client',
       plugins: []
     }

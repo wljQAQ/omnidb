@@ -14,8 +14,7 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Learn more about it here: https://the-guild.dev/graphql/codegen/plugins/presets/preset-client#reducing-bundle-size
  */
 const documents = {
-    "\n  query GetUser {\n    test1 {\n      id\n      email\n      name\n    }\n  }\n": types.GetUserDocument,
-    "\n  mutation CreateUser($input: CreateUserInput!) {\n    createUser(createUserInput: $input) {\n      id\n      email\n      name\n    }\n  }\n": types.CreateUserDocument,
+    "\n  query GET_BI_APP($id: Int!) {\n    biApp(id: $id) {\n      id\n    }\n  }\n": types.Get_Bi_AppDocument,
 };
 
 /**
@@ -35,11 +34,7 @@ export function graphql(source: string): unknown;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  query GetUser {\n    test1 {\n      id\n      email\n      name\n    }\n  }\n"): (typeof documents)["\n  query GetUser {\n    test1 {\n      id\n      email\n      name\n    }\n  }\n"];
-/**
- * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function graphql(source: "\n  mutation CreateUser($input: CreateUserInput!) {\n    createUser(createUserInput: $input) {\n      id\n      email\n      name\n    }\n  }\n"): (typeof documents)["\n  mutation CreateUser($input: CreateUserInput!) {\n    createUser(createUserInput: $input) {\n      id\n      email\n      name\n    }\n  }\n"];
+export function graphql(source: "\n  query GET_BI_APP($id: Int!) {\n    biApp(id: $id) {\n      id\n    }\n  }\n"): (typeof documents)["\n  query GET_BI_APP($id: Int!) {\n    biApp(id: $id) {\n      id\n    }\n  }\n"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};

@@ -3,7 +3,7 @@ import request from 'graphql-request';
 
 export * from './gql';
 
-export * from './queries/user';
+export * from './queries/bi_app';
 
 export function graphqlRequest(query: any) {
   const res = useQuery({

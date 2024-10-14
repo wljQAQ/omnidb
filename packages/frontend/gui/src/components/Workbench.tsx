@@ -5,11 +5,11 @@ import { Button, Card, Layout, Modal, Tree } from 'antd';
 
 import { BIMenu } from '@omnidb/component/bi-menu';
 import { BITable } from '@omnidb/component/bi-table';
-import { GET_USER, graphqlRequest, ReactQueryProvider } from '@omnidb/request';
+import { GET_BI_APP, graphqlRequest, ReactQueryProvider } from '@omnidb/request';
 
 import { useParams } from 'react-router-dom';
 
-console.log(GET_USER, 111);
+console.log(GET_BI_APP, 111);
 
 const { Header, Content, Sider } = Layout;
 const newProjectModal = {
@@ -23,7 +23,7 @@ const newProjectModal = {
 
 export default function index() {
   const { bitableId } = useParams();
-  graphqlRequest(GET_USER);
+  graphqlRequest(GET_BI_APP);
   console.log(bitableId, useParams());
   return (
     <Layout className="h-full">
