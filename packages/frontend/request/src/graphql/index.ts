@@ -12,5 +12,5 @@ export function graphqlRequest(query: any) {
       return request('http://localhost:3000/graphql', query);
     }
   });
-  console.log(res, 'data');
+  console.log(res.data, 'data');
 }

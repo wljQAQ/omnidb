@@ -3,47 +3,9 @@
 # ------------------------------------------------------
 
 type BiApp {
-  """Example field (placeholder)"""
-  id: String!
-}
-
-type BiTable {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  id: ID!
 }
 
 type Query {
-  biApp(id: Int!): BiApp!
-  biTable(id: Int!): BiTable!
-}
-
-type Mutation {
-  createBiApp(createBiAppInput: CreateBiAppInput!): BiApp!
-  updateBiApp(updateBiAppInput: UpdateBiAppInput!): BiApp!
-  removeBiApp(id: Int!): BiApp!
-  createBiTable(createBiTableInput: CreateBiTableInput!): BiTable!
-  updateBiTable(updateBiTableInput: UpdateBiTableInput!): BiTable!
-  removeBiTable(id: Int!): BiTable!
-}
-
-input CreateBiAppInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
-}
-
-input UpdateBiAppInput {
-  """Example field (placeholder)"""
-  exampleField: Int
-  id: Int!
-}
-
-input CreateBiTableInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
-}
-
-input UpdateBiTableInput {
-  """Example field (placeholder)"""
-  exampleField: Int
-  id: Int!
+  biApp: [BiApp!]!
 }
