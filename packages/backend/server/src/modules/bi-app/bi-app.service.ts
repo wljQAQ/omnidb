@@ -1,13 +1,18 @@
 import { Injectable } from '@nestjs/common';
 
-import { BiApp, Prisma } from '@prisma/client';
+import { Prisma } from '@prisma/client';
 import { PrismaService } from 'nestjs-prisma';
 
 @Injectable()
 export class BiAppService {
   constructor(private readonly prisma: PrismaService) {}
-  findAll() {
-    return this.prisma.biApp.findMany();
+
+  findOne(id: string) {
+    return this.prisma.biApp.findUnique({
+      where: {
+        id
+      }
+    });
   }
   /**
    * 创建一个新的 BI 应用

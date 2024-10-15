@@ -8,6 +8,7 @@ import { DirectiveLocation, GraphQLDirective } from 'graphql';
 import { PrismaModule } from 'nestjs-prisma';
 
 import { BiAppModule } from './modules/bi-app/bi-app.module';
+import { BiTableModule } from './modules/bi-table/bi-table.module';
 
 @Module({
   imports: [
@@ -20,7 +21,8 @@ import { BiAppModule } from './modules/bi-app/bi-app.module';
     PrismaModule.forRoot({
       isGlobal: true
     }),
-    BiAppModule
+    BiAppModule,
+    BiTableModule
   ]
 })
 export class AppModule {}

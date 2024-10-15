@@ -9,14 +9,31 @@ type BiApp {
   name: String!
 }
 
+type BiTable {
+  id: ID!
+
+  """User name"""
+  name: String!
+
+  """BiApp Id"""
+  biAppId: String!
+}
+
 type Query {
-  biApp: [BiApp!]!
+  findBiAppWithTables(id: String!): BiApp!
 }
 
 type Mutation {
   createBiApp(app: CreateBiAppInput!): BiApp!
+  createBiTable(table: CreateBiTableInput!): BiTable!
 }
 
 input CreateBiAppInput {
+  id: String
   name: String
+}
+
+input CreateBiTableInput {
+  biAppId: String!
+  name: String!
 }

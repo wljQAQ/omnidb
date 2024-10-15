@@ -17,6 +17,7 @@ export type Scalars = {
 };
 
 export type CreateBiAppInput = {
+  id?: InputMaybe<Scalars['String']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
 };
 
