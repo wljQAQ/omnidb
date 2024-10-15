@@ -16,6 +16,10 @@ export type Scalars = {
   Float: { input: number; output: number; }
 };
 
+export type CreateBiAppInput = {
+  name?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type Get_Bi_AppQueryVariables = Exact<{ [key: string]: never; }>;
 
 

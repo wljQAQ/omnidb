@@ -4,8 +4,19 @@
 
 type BiApp {
   id: ID!
+
+  """User name"""
+  name: String!
 }
 
 type Query {
   biApp: [BiApp!]!
+}
+
+type Mutation {
+  createBiApp(app: CreateBiAppInput!): BiApp!
+}
+
+input CreateBiAppInput {
+  name: String
 }

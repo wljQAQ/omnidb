@@ -1,7 +1,9 @@
 import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
 
+import { Prisma } from '@prisma/client';
+
 import { BiAppService } from './bi-app.service';
-import { BiApp } from './type';
+import { BiApp, CreateBiAppInput } from './type';
 
 @Resolver(() => BiApp)
 export class BiAppResolver {
@@ -19,6 +21,12 @@ export class BiAppResolver {
   //   console.log('findOne');
   //   return this.biAppService.findOne(id);
   // }
+
+  @Mutation(() => BiApp)
+  createBiApp(@Args('app') app: CreateBiAppInput) {
+    console.log("🚀 ~ BiAppResolver ~ createBiApp ~ app:", app)
+    return this.biAppService.createBiApp(app);
+  }
 
   // @Mutation(() => BiApp)
   // updateBiApp(@Args('updateBiAppInput') updateBiAppInput: UpdateBiAppInput) {
