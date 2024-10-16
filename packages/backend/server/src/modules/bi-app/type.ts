@@ -1,5 +1,7 @@
 import { Field, ID, InputType, ObjectType } from '@nestjs/graphql';
 
+import { BiTable } from '../bi-table/type';
+
 @ObjectType()
 export class BiApp {
   @Field(() => ID)
@@ -7,8 +9,10 @@ export class BiApp {
 
   @Field({ description: 'User name' })
   name!: string;
-  // 添加其他字段...
-}  
+
+  @Field(() => [BiTable])
+  tables!: BiTable[];
+}
 
 @InputType()
 export class CreateBiAppInput {

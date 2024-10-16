@@ -14,7 +14,7 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Learn more about it here: https://the-guild.dev/graphql/codegen/plugins/presets/preset-client#reducing-bundle-size
  */
 const documents = {
-    "\n  query GET_BI_APP {\n    biApp {\n      id\n    }\n  }\n": types.Get_Bi_AppDocument,
+    "\n  query FIND_BI_APP_WITH_TABLES($id: String!) {\n    findBiAppWithTables(id: $id) {\n      id\n      name\n      tables {\n        id\n        name\n      }\n    }\n  }\n": types.Find_Bi_App_With_TablesDocument,
 };
 
 /**
@@ -34,7 +34,7 @@ export function graphql(source: string): unknown;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  query GET_BI_APP {\n    biApp {\n      id\n    }\n  }\n"): (typeof documents)["\n  query GET_BI_APP {\n    biApp {\n      id\n    }\n  }\n"];
+export function graphql(source: "\n  query FIND_BI_APP_WITH_TABLES($id: String!) {\n    findBiAppWithTables(id: $id) {\n      id\n      name\n      tables {\n        id\n        name\n      }\n    }\n  }\n"): (typeof documents)["\n  query FIND_BI_APP_WITH_TABLES($id: String!) {\n    findBiAppWithTables(id: $id) {\n      id\n      name\n      tables {\n        id\n        name\n      }\n    }\n  }\n"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};

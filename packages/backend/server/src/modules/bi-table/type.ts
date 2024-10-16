@@ -1,7 +1,9 @@
 import { Field, ID, InputType, ObjectType } from '@nestjs/graphql';
 
+import { BiTable as BiTableType } from '@prisma/client';
+
 @ObjectType()
-export class BiTable {
+export class BiTable implements BiTableType {
   @Field(() => ID)
   id!: string;
 

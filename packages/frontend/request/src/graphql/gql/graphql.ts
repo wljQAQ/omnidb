@@ -21,10 +21,17 @@ export type CreateBiAppInput = {
   name?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type Get_Bi_AppQueryVariables = Exact<{ [key: string]: never; }>;
+export type CreateBiTableInput = {
+  biAppId: Scalars['String']['input'];
+  name: Scalars['String']['input'];
+};
+
+export type Find_Bi_App_With_TablesQueryVariables = Exact<{
+  id: Scalars['String']['input'];
+}>;
 
 
-export type Get_Bi_AppQuery = { __typename?: 'Query', biApp: Array<{ __typename?: 'BiApp', id: string }> };
+export type Find_Bi_App_With_TablesQuery = { __typename?: 'Query', findBiAppWithTables: { __typename?: 'BiApp', id: string, name: string, tables: Array<{ __typename?: 'BiTable', id: string, name: string }> } };
 
 
-export const Get_Bi_AppDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GET_BI_APP"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"biApp"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<Get_Bi_AppQuery, Get_Bi_AppQueryVariables>;
+export const Find_Bi_App_With_TablesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"FIND_BI_APP_WITH_TABLES"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"findBiAppWithTables"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"tables"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]} as unknown as DocumentNode<Find_Bi_App_With_TablesQuery, Find_Bi_App_With_TablesQueryVariables>;

@@ -1,9 +1,14 @@
 import { graphql } from '../gql';
 
-export const GET_BI_APP = graphql(`
-  query GET_BI_APP {
-    biApp {
+export const FIND_BI_APP_WITH_TABLES = graphql(`
+  query FIND_BI_APP_WITH_TABLES($id: String!) {
+    findBiAppWithTables(id: $id) {
       id
+      name
+      tables {
+        id
+        name
+      }
     }
   }
 `);

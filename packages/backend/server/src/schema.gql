@@ -2,13 +2,6 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type BiApp {
-  id: ID!
-
-  """User name"""
-  name: String!
-}
-
 type BiTable {
   id: ID!
 
@@ -17,6 +10,14 @@ type BiTable {
 
   """BiApp Id"""
   biAppId: String!
+}
+
+type BiApp {
+  id: ID!
+
+  """User name"""
+  name: String!
+  tables: [BiTable!]!
 }
 
 type Query {

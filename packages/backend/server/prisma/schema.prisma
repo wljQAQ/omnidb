@@ -9,7 +9,7 @@ datasource db {
 
 //多维表格应用
 model BiApp {
-  id     String    @id @default(uuid())
+  id     String    @id @default(cuid())
   name   String?    
   tables BiTable[]
 
@@ -17,7 +17,7 @@ model BiApp {
 }
 
 model BiTable {
-  id      String @id @default(uuid())
+  id      String @id @default(cuid())
   name    String? 
   biApp   BiApp  @relation(fields: [biAppId], references: [id])
   biAppId String
