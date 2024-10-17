@@ -16,7 +16,6 @@
   "license": "ISC",
   "packageManager": "pnpm@9.5.0",
   "devDependencies": {
-    "@0no-co/graphqlsp": "^1.12.16",
     "@commitlint/cli": "^19.5.0",
     "@commitlint/config-conventional": "^19.5.0",
     "@commitlint/cz-commitlint": "^19.5.0",

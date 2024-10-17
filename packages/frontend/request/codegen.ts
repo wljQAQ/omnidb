@@ -3,11 +3,15 @@ import { CodegenConfig } from '@graphql-codegen/cli';
 const config: CodegenConfig = {
   schema: '../../backend/server/src/schema.gql',
   overwrite: true,
-  documents: ['./src/**/*.ts'], // 修改这一行
+  documents: ['./src/graphql/queries/*.ts'],
   generates: {
     './src/graphql/gql/': {
       preset: 'client',
-      plugins: []
+      config: {
+        documentMode: 'string',
+        strictScalars: true
+      }
+      // plugins: ['typescript', 'typescript-operations']
     }
   }
 };

@@ -1,29 +1,14 @@
 {
   "extends": "../../../tsconfig.json",
   "compilerOptions": {
-    // "target": "ES2018",
-    // "module": "ESNext",
-    // "moduleResolution": "node",
-    // "lib": ["ESNext", "DOM"],
-    // "strict": true,
-    // "esModuleInterop": true,
-    // "skipLibCheck": true,
-    // "forceConsistentCasingInFileNames": true,
     "paths": {
       "@/*": ["./src/*"]
     },
-    // "plugins": [
-    //   {
-    //     "name": "@0no-co/graphqlsp",
-    //     "schema": "../../backend/server/src/schema.gql"
-    //   }
-    // ],,
     "plugins": [
-      {
-        "name": "gql.tada/ts-plugin",
-        "schema": "../../backend/server/src/schema.gql",
-        "tadaOutputLocation": "./src/graphql-env.d.ts"
-      }
+      // {
+      //   "name": "@0no-co/graphqlsp",
+      //   "schema": "../../backend/server/src/schema.gql"
+      // }
     ]
   },
   "include": ["./src"]

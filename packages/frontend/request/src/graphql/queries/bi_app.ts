@@ -5,6 +5,10 @@ export const FIND_BI_APP_WITH_TABLES = graphql(`
     findBiAppWithTables(id: $id) {
       id
       name
+      tables {
+        id
+        name
+      }
     }
   }
 `);

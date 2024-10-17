@@ -1,0 +1,2 @@
+schema: ./packages/backend/server/src/schema.gql
+documents: ./packages/frontend/request/src/**/*.ts

@@ -5,7 +5,7 @@ import { Button, Card, Layout, Modal, Tree } from 'antd';
 
 import { BIMenu } from '@omnidb/component/bi-menu';
 import { BITable } from '@omnidb/component/bi-table';
-import { FIND_BI_APP_WITH_TABLES, graphqlRequest, ReactQueryProvider } from '@omnidb/request';
+import { FIND_BI_APP_WITH_TABLES, ReactQueryProvider, useGraphQLQuery } from '@omnidb/request';
 
 import { useParams } from 'react-router-dom';
 
@@ -23,8 +23,7 @@ const newProjectModal = {
 
 export default function index() {
   const { bitableId } = useParams();
-  graphqlRequest(FIND_BI_APP_WITH_TABLES, { id: 'cm2bnnwr000009go1kw9qnwwm' });
-  console.log(bitableId, useParams());
+  const { data, loading, error } = useGraphQLQuery(FIND_BI_APP_WITH_TABLES, { id: 'cm2bnnwr000009go1kw9qnwwm' });
   return (
     <Layout className="h-full">
       <Header className="border-b border-gray-200 bg-white">header</Header>
