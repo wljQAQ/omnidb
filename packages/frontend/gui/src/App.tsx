@@ -1,13 +1,17 @@
+import { Suspense } from 'react';
+
 import { ReactQueryProvider } from '@omnidb/request';
 
 import { RouterProvider } from 'react-router-dom';
 
-import router from './router';
+import { router } from './router';
 
 function App() {
   return (
     <ReactQueryProvider>
-      <RouterProvider router={router}></RouterProvider>
+      <Suspense fallback={<div>Loading...</div>}>
+        <RouterProvider router={router}></RouterProvider>
+      </Suspense>
     </ReactQueryProvider>
   );
 }

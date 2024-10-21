@@ -1,22 +1,10 @@
 import { useQuery, UseQueryOptions } from '@tanstack/react-query';
-import { request, RequestDocument } from 'graphql-request';
 
-import { TypedDocumentString } from './graphql';
+import { TypedDocumentString } from './graphql/gql/graphql';
 
-// export function useGraphQLQuery<TResult, TVariables>(
-//   document: TypedDocumentString<TResult, TVariables>,
-//   variables?: TVariables,
-//   options?: Omit<UseQueryOptions<TResult, Error, TResult>, 'queryKey' | 'queryFn'>
-// ) {
-//   return useQuery({
-//     queryKey: [document, variables],
-//     queryFn: async () => request<TResult>('http://localhost:3000/graphql', document, variables || {}),
-//     ...options
-//   });
-// }
 export function useGraphQLQuery<TResult, TVariables>(
   document: TypedDocumentString<TResult, TVariables>,
-  variables?: TVariables extends Record<string, never> ? [] : [TVariables],
+  variables?: TVariables,
   options?: Omit<UseQueryOptions<TResult, Error, TResult>, 'queryKey' | 'queryFn'>
 ) {
   return useQuery({
@@ -26,10 +14,7 @@ export function useGraphQLQuery<TResult, TVariables>(
   });
 }
 
-export async function execute<TResult, TVariables>(
-  query: TypedDocumentString<TResult, TVariables>,
-  variables?: TVariables extends Record<string, never> ? [] : [TVariables]
-) {
+export async function execute<TResult, TVariables>(query: TypedDocumentString<TResult, TVariables>, variables?: TVariables) {
   const response = await fetch('http://localhost:3000/graphql', {
     method: 'POST',
     headers: {
@@ -46,5 +31,13 @@ export async function execute<TResult, TVariables>(
     throw new Error('Network response was not ok');
   }
 
-  return response.json() as TResult;
+  const result = await response.json();
+
+  if (result.errors) {
+    // 如果有错误，抛出第一个错误
+    throw new Error(result.errors[0].message);
+  }
+
+  // 返回 result.data，而不是整个 result
+  return result.data as TResult;
 }

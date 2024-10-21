@@ -9,24 +9,15 @@ import { FIND_BI_APP_WITH_TABLES, ReactQueryProvider, useGraphQLQuery } from '@o
 
 import { useParams } from 'react-router-dom';
 
-console.log(FIND_BI_APP_WITH_TABLES, 111);
-
 const { Header, Content, Sider } = Layout;
-const newProjectModal = {
-  title: 'Use Hook!',
-  content: (
-    <>
-      <div>这是一个modal</div>
-    </>
-  )
-};
 
 export default function index() {
   const { bitableId } = useParams();
-  const { data, loading, error } = useGraphQLQuery(FIND_BI_APP_WITH_TABLES, { id: 'cm2bnnwr000009go1kw9qnwwm' });
+  const { data, error } = useGraphQLQuery(FIND_BI_APP_WITH_TABLES, { id: 'cm2bnnwr000009go1kw9qnwwm' });
+  console.log('🚀 ~ index ~ data11222221:', data);
   return (
     <Layout className="h-full">
-      <Header className="border-b border-gray-200 bg-white">header</Header>
+      <Header className="border-b border-gray-200 bg-white">{data?.findBiAppWithTables.name}</Header>
 
       <Layout>
         <Sider className="border-r border-gray-200" theme="light">

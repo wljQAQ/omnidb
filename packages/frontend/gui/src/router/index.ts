@@ -7,10 +7,8 @@ const Table = React.lazy(() => import('../components/Workbench'));
 const routes: RouteObject[] = [
   {
     path: '/:bitableId',
-    element: <Table />
+    Component: Table
   }
 ];
 
-const router = createBrowserRouter(routes);
-
-export default router;
+export const router = createBrowserRouter(routes);
