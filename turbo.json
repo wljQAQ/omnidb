@@ -10,9 +10,13 @@
     "type-check": {},
     "dev": {
       "cache": false,
-      "persistent": true
+      "persistent": true,
+      "dependsOn": ["@omnidb/server#prisma:generate"]
     },
     "clean": {
+      "cache": false
+    },
+    "prisma:generate": {
       "cache": false
     }
   }

@@ -11,6 +11,7 @@
     "@ant-design/icons": "^5.5.1",
     "@omnidb/component": "workspace:*",
     "@omnidb/request": "workspace:*",
+    "@omnidb/store": "workspace:*",
     "antd": "^5.21.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
