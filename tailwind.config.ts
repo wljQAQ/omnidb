@@ -20,10 +20,14 @@ export default {
         containHeader: 'var(--color-base)',
         primary: '--color-primary',
         secondary: '--color-secondary',
-        muted: '--color-text-muted'
+        muted: '--color-text-muted',
+        hover: 'rgba(0, 0, 0, 0.06)'
       },
       borderColor: {
         divider: '#DEE0E3'
+      },
+      transitionDuration: {
+        DEFAULT: '300ms'
       }
     }
   },

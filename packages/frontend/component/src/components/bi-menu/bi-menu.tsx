@@ -1,69 +1,67 @@
-import React from 'react';
+import React, { ReactElement, useRef } from 'react';
 
 import { AppstoreOutlined, MailOutlined, MoreOutlined, SettingOutlined } from '@ant-design/icons';
-import type { MenuProps } from 'antd';
-import { Button, Dropdown, Menu } from 'antd';
+import type { InputRef, MenuProps } from 'antd';
+import { Button, Dropdown, Input, Menu } from 'antd';
+
+import { useClickAway, useToggle } from 'ahooks';
+
+import { CreateMenu } from './create-menu';
 
 type MenuItem = Required<MenuProps>['items'][number];
 
-function MenuExtraButton() {
+const MenuExtraButton = () => {
   const items: MenuProps['items'] = [
     {
-      key: '1',
-      label: (
-        <a target="_blank" rel="noopener noreferrer" href="https://www.antgroup.com">
-          1st menu item
-        </a>
-      )
+      key: 'rename',
+      label: '重命名'
     },
     {
-      key: '2',
-      label: (
-        <a target="_blank" rel="noopener noreferrer" href="https://www.aliyun.com">
-          2nd menu item
-        </a>
-      )
+      key: 'copy',
+      label: '复制'
     },
     {
-      key: '3',
-      label: (
-        <a target="_blank" rel="noopener noreferrer" href="https://www.luohanacademy.com">
-          3rd menu item
-        </a>
-      )
+      type: 'divider'
+    },
+    {
+      key: 'delete',
+      label: '删除'
     }
   ];
   return (
-    <Dropdown menu={{ items }} trigger={['click']}>
+    <Dropdown menu={{ items }} trigger={['click']} className="hover:!text-blue-700">
       <MoreOutlined />
     </Dropdown>
   );
-}
+};
+
+const Label = ({ label, defaultEdit = false }: { label: string; defaultEdit?: boolean }) => {
+  const [edit, { toggle, setLeft }] = useToggle(defaultEdit);
+
+  const ref = useRef<HTMLSpanElement>(null);
+  useClickAway(() => {
+    setLeft();
+  }, ref);
+
+  return (
+    <div className="w-full" onDoubleClick={toggle}>
+      {edit ? (
+        <span ref={ref}>
+          <Input className="w-full" defaultValue={label} autoFocus />
+        </span>
+      ) : (
+        label
+      )}
+    </div>
+  );
+};
 
 const items: MenuItem[] = [
   {
     key: 'sub1',
-    label: 'Navigation One',
+    label: <Label label="1111" />,
     icon: <MailOutlined />,
     extra: <MenuExtraButton />
-  },
-  {
-    key: 'sub2',
-    label: 'Navigation Two',
-    icon: <AppstoreOutlined />
-  },
-  {
-    type: 'divider'
-  },
-  {
-    key: 'sub4',
-    label: 'Navigation Three',
-    icon: <SettingOutlined />
-  },
-  {
-    key: 'grp',
-    label: 'Group',
-    type: 'group'
   }
 ];
 
@@ -72,5 +70,18 @@ export function BIMenu() {
     console.log('click ', e);
   };
 
-  return <Menu onClick={onClick} defaultSelectedKeys={['1']} defaultOpenKeys={['sub1']} mode="inline" items={items} />;
+  return (
+    <div className="flex h-full flex-col justify-between">
+      <Menu
+        className="overflow-y-auto"
+        onClick={onClick}
+        defaultSelectedKeys={['1']}
+        defaultOpenKeys={['sub1']}
+        mode="inline"
+        items={items}
+      />
+
+      <CreateMenu />
+    </div>
+  );
 }
