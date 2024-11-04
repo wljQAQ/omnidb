@@ -10,7 +10,9 @@ datasource db {
 //多维表格应用
 model BiApp {
   id     String    @id @default(cuid())
-  name   String?    
+  // 应用名称
+  name   String?
+  //应用的表    
   tables BiTable[]
 
   @@map("bi_app")
@@ -18,9 +20,11 @@ model BiApp {
 
 model BiTable {
   id      String @id @default(cuid())
+  // 表名称
   name    String? 
+  // 
+
   biApp   BiApp  @relation(fields: [biAppId], references: [id])
   biAppId String
-
   @@map("bi_table")
 }
