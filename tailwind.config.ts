@@ -28,6 +28,9 @@ export default {
       },
       transitionDuration: {
         DEFAULT: '300ms'
+      },
+      boxShadow: {
+        box: '0 4px 8px -4px rgba(0, 0, 0, .13), 0 6px 16px 0 rgba(0, 0, 0, .08), 0 12px 24px 16px rgba(0, 0, 0, .04);'
       }
     }
   },
