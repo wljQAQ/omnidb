@@ -10,7 +10,7 @@ function App() {
   return (
     <ReactQueryProvider>
       <Suspense fallback={<div>Loading...</div>}>
-        <RouterProvider router={router}></RouterProvider>
+        <RouterProvider router={router} />
       </Suspense>
     </ReactQueryProvider>
   );

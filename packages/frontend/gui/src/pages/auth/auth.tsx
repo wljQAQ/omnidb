@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import { Button, Divider, Form, Input, Radio, Select, Space } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
+import { Button, Divider, Form, Input, message, Radio, Select, Space } from 'antd';
 
 import { IconFont } from '@omnidb/component/icon-font';
+
+import { nanoid } from 'nanoid';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 const options = [
   {
@@ -20,23 +24,43 @@ const options = [
 const loginType = [
   {
     icon: 'icon-github',
-    label: 'GitHub'
+    label: 'GitHub',
+    provider: 'github'
   },
   {
     icon: 'icon-google',
-    label: 'Google'
+    label: 'Google',
+    provider: 'google'
   },
   {
     icon: 'icon-wechat',
-    label: '微信'
+    label: '微信',
+    provider: 'wechat'
   }
 ];
 
-export default function login() {
+/**
+ * 第三方 OAuth 登录
+ */
+async function oAuthLogin() {
+  const clientId = 'Ov23liIjKcMH599s4BCL';
+  const redirectUri = 'http://127.0.0.1:5173/oauth/callback';
+
+  const params = new URLSearchParams({
+    client_id: clientId,
+    redirect_uri: redirectUri,
+    state: nanoid()
+  });
+  console.log('🚀 ~ oAuthLogin ~ params:', params);
+
+  window.location.href = `https://github.com/login/oauth/authorize?${params.toString()}`;
+}
+
+export default function Auth() {
   return (
     <div className="h-full w-full bg-gray-50">
       <div className="m-auto w-96 pt-24">
-        <div className="shadow-box h-fit min-h-[540px] rounded-lg bg-white px-8 pt-10">
+        <div className="h-fit min-h-[540px] rounded-lg bg-white px-8 pt-10 shadow-box">
           {/* logo */}
           <div className="mb-12 gap-3 flex-center">
             <IconFont type="icon-github" className="text-4xl" />
@@ -85,13 +109,11 @@ export default function login() {
             <Divider className="!text-sm !text-gray-500">其他登录方式</Divider>
 
             <Space className="w-full justify-center" size={24}>
-              {loginType.map(item => {
-                return (
-                  <span className="cursor-pointer text-3xl" key={item.label}>
-                    <IconFont type={item.icon} />
-                  </span>
-                );
-              })}
+              {loginType.map(item => (
+                <span className="cursor-pointer text-3xl" key={item.label} onClick={oAuthLogin}>
+                  <IconFont type={item.icon} />
+                </span>
+              ))}
             </Space>
           </div>
         </div>

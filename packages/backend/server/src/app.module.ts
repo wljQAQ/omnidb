@@ -2,11 +2,13 @@ import { join } from 'path';
 
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { GraphQLModule } from '@nestjs/graphql';
 
 import { DirectiveLocation, GraphQLDirective } from 'graphql';
 import { PrismaModule } from 'nestjs-prisma';
 
+import { AuthModule } from './modules/auth/auth.module';
 import { BiAppModule } from './modules/bi-app/bi-app.module';
 import { BiTableModule } from './modules/bi-table/bi-table.module';
 import { DataSyncModule } from './modules/data-sync/data-sync.module';
@@ -22,9 +24,13 @@ import { DataSyncModule } from './modules/data-sync/data-sync.module';
     PrismaModule.forRoot({
       isGlobal: true
     }),
+    ConfigModule.forRoot({
+      isGlobal: true
+    }),
     BiAppModule,
     BiTableModule,
-    DataSyncModule
+    DataSyncModule,
+    AuthModule
   ]
 })
 export class AppModule {}
