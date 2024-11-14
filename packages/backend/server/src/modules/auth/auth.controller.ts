@@ -1,7 +1,8 @@
 import { Controller, Get, Param, Query } from '@nestjs/common';
+
+import { CatchError } from '../../common/decorators/catch-error.decorator';
 import { AuthService } from './auth.service';
 import { AuthUrlOptions } from './oauth-providers/interface';
-import { CatchError } from '../../common/decorators/catch-error.decorator';
 
 /**
  * 认证控制器
@@ -17,7 +18,7 @@ export class AuthController {
    * @returns 包含授权URL的对象
    */
   @Get('oauth/:provider')
-  @CatchError('OAuth authorization failed')
+  @CatchError()
   oauthLogin(@Param('provider') provider: string) {
     const authUrl = this.authService.getAuthorizationUrl(provider);
     return { url: authUrl };
@@ -32,17 +33,9 @@ export class AuthController {
    */
   @Get('oauth/:provider/callback')
   @CatchError('OAuth callback failed')
-  async oauthCallback(
-    @Query('provider') provider: string,
-    @Query('code') code: string,
-    @Query('redirect_uri') redirectUri: string
-  ) {
+  async oauthCallback(@Query('provider') provider: string, @Query('code') code: string, @Query('redirect_uri') redirectUri: string) {
     const options: AuthUrlOptions = { redirectUri };
-    const userInfo = await this.authService.handleOAuthCallback(
-      provider,
-      code,
-      options
-    );
+    const userInfo = await this.authService.handleOAuthCallback(provider, code, options);
     return userInfo;
   }
 }

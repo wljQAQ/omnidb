@@ -13,11 +13,7 @@ interface ErrorConfig {
 export function CatchError(config: ErrorConfig | string = {}) {
   const errorConfig: ErrorConfig = typeof config === 'string' ? { message: config } : config;
 
-  return function (
-    target: any,
-    propertyKey: string,
-    descriptor: PropertyDescriptor
-  ) {
+  return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
     const originalMethod = descriptor.value;
 
     descriptor.value = async function (...args: any[]) {
@@ -34,7 +30,7 @@ export function CatchError(config: ErrorConfig | string = {}) {
         }
 
         throw new HttpException(
-          errorConfig.message || error.message || 'Internal server error',
+          errorConfig.message || error.message || propertyKey + ' error',
           errorConfig.status || HttpStatus.BAD_REQUEST
         );
       }
@@ -42,4 +38,4 @@ export function CatchError(config: ErrorConfig | string = {}) {
 
     return descriptor;
   };
-} 
+}
