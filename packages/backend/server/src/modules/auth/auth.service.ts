@@ -19,9 +19,9 @@ export class AuthService {
    */
   getAuthorizationUrl(provider: string, options?: AuthUrlOptions): string {
     const oauthProvider = this.oauthProviders.get(provider);
-    // if (!oauthProvider) {
-    //   throw new BadRequestException(`Unsupported OAuth provider: ${provider}`);
-    // }
+    if (!oauthProvider) {
+      throw new BadRequestException(`Unsupported OAuth provider: ${provider}`);
+    }
     return oauthProvider.getAuthorizationUrl(options);
   }
 

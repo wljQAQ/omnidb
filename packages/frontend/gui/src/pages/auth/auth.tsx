@@ -42,18 +42,23 @@ const loginType = [
 /**
  * 第三方 OAuth 登录
  */
-async function oAuthLogin() {
+async function oAuthLogin(provider: string) {
   const clientId = 'Ov23liIjKcMH599s4BCL';
   const redirectUri = 'http://127.0.0.1:5173/oauth/callback';
 
+  //TODO:把fetch封装到request包中
+  const response = await fetch(`http://localhost:3000/auth/oauth/${provider}`, {
+    method: 'GET'
+  }).then(res => res.json());
+
+  const url = response.data.url;
+
   const params = new URLSearchParams({
     client_id: clientId,
-    redirect_uri: redirectUri,
-    state: nanoid()
+    redirect_uri: redirectUri
   });
-  console.log('🚀 ~ oAuthLogin ~ params:', params);
 
-  window.location.href = `https://github.com/login/oauth/authorize?${params.toString()}`;
+  window.location.href = `${url}&${params.toString()}`;
 }
 
 export default function Auth() {
@@ -110,7 +115,7 @@ export default function Auth() {
 
             <Space className="w-full justify-center" size={24}>
               {loginType.map(item => (
-                <span className="cursor-pointer text-3xl" key={item.label} onClick={oAuthLogin}>
+                <span className="cursor-pointer text-3xl" key={item.label} onClick={() => oAuthLogin(item.provider)}>
                   <IconFont type={item.icon} />
                 </span>
               ))}

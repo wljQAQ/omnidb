@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "turbo run dev",
+    "debug": "turbo run dev --filter=@omnidb/server",
     "lint": "eslint .",
     "commit": "git add . && cz",
     "prepare": "husky",

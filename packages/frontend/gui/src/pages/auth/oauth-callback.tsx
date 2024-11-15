@@ -2,56 +2,56 @@ import React, { useEffect } from 'react';
 
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
+async function fetchOAuthCallback(code: string, state: string) {
+  try {
+    const params = new URLSearchParams({
+      code: code || '',
+      redirect_uri: 'http://127.0.0.1:5173/oauth/callback'
+    });
+
+    const response = await fetch(`http://localhost:3000/auth/oauth/github/callback?${params.toString()}`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json'
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    console.log('Response data:', data);
+    return data;
+  } catch (error) {
+    console.error('Fetch error:', error);
+    throw error;
+  }
+}
+
 export default function Callback() {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const code = searchParams.get('code');
   const state = searchParams.get('state');
-  console.log('🚀 ~ useEffect ~ state:', state);
-  console.log('🚀 ~ useEffect ~ code:', code);
 
-  // useEffect(() => {
-  //   const savedState = localStorage.getItem('oauth_state');
+  useEffect(() => {
+    //TODO: 验证code
+    if (!code || !state) {
+      return;
+    }
 
-  //   // 清除已使用的state
-  //   // localStorage.removeItem('oauth_state');
+    const handleOAuthCallback = async () => {
+      try {
+        fetchOAuthCallback(code, state);
+      } catch (error) {
+        console.error('OAuth callback error:', error);
+        navigate('/auth');
+      }
+    };
 
-  //   // // 验证state
-  //   // if (!state || state !== savedState) {
-  //   //   console.error('Invalid state parameter');
-  //   //   navigate('/auth');
-  //   //   return;
-  //   // }
-
-  //   // if (!code) {
-  //   //   navigate('/auth');
-  //   //   return;
-  //   // }
-
-  //   const handleOAuthCallback = async () => {
-  //     try {
-  //       // const response = await fetch('/api/oauth/callback', {
-  //       //   method: 'POST',
-  //       //   headers: {
-  //       //     'Content-Type': 'application/json',
-  //       //   },
-  //       //   body: JSON.stringify({ code, state }),
-  //       // });
-
-  //       // if (response.ok) {
-  //       //   const data = await response.json();
-  //       //   navigate('/dashboard');
-  //       // }
-
-  //       navigate('/');
-  //     } catch (error) {
-  //       console.error('OAuth callback error:', error);
-  //       navigate('/auth');
-  //     }
-  //   };
-
-  //   handleOAuthCallback();
-  // }, [searchParams, navigate]);
+    handleOAuthCallback();
+  }, [searchParams, navigate]);
 
   return <div className="h-full flex-center">Processing login...</div>;
 }

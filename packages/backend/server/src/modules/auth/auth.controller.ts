@@ -20,6 +20,7 @@ export class AuthController {
   @Get('oauth/:provider')
   @CatchError()
   oauthLogin(@Param('provider') provider: string) {
+    console.log('🚀 ~ AuthController ~ oauthLogin ~ provider:', 221, provider);
     const authUrl = this.authService.getAuthorizationUrl(provider);
     return { url: authUrl };
   }
@@ -33,7 +34,9 @@ export class AuthController {
    */
   @Get('oauth/:provider/callback')
   @CatchError('OAuth callback failed')
-  async oauthCallback(@Query('provider') provider: string, @Query('code') code: string, @Query('redirect_uri') redirectUri: string) {
+  async oauthCallback(@Param('provider') provider: string, @Query('code') code: string, @Query('redirect_uri') redirectUri: string) {
+    console.log(1111);
+    console.log('🚀 ~ AuthController ~ oauthCallback ~ provider:', provider);
     const options: AuthUrlOptions = { redirectUri };
     const userInfo = await this.authService.handleOAuthCallback(provider, code, options);
     return userInfo;
