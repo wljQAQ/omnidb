@@ -20,6 +20,7 @@ export function CatchError(config: ErrorConfig | string = {}) {
       try {
         return await originalMethod.apply(this, args);
       } catch (error) {
+        console.error(error);
         if (error instanceof HttpException) {
           throw error;
         }

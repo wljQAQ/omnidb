@@ -33,10 +33,8 @@ export class AuthController {
    * @returns 用户信息
    */
   @Get('oauth/:provider/callback')
-  @CatchError('OAuth callback failed')
+  @CatchError()
   async oauthCallback(@Param('provider') provider: string, @Query('code') code: string, @Query('redirect_uri') redirectUri: string) {
-    console.log(1111);
-    console.log('🚀 ~ AuthController ~ oauthCallback ~ provider:', provider);
     const options: AuthUrlOptions = { redirectUri };
     const userInfo = await this.authService.handleOAuthCallback(provider, code, options);
     return userInfo;

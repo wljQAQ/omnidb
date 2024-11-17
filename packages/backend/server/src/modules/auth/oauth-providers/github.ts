@@ -38,8 +38,6 @@ export class GithubOAuthProvider implements OAuthProvider {
    * @returns 访问令牌信息
    */
   async getAccessToken(code: string, options: AuthUrlOptions): Promise<OAuthAccessToken> {
-    console.log('🚀 ~ GithubOAuthProvider ~ getAccessToken ~ options:', options);
-    console.log('🚀 ~ GithubOAuthProvider ~ getAccessToken ~ code:', code);
     const response = await fetch(this.accessTokenUrl, {
       method: 'POST',
       headers: {
@@ -54,11 +52,11 @@ export class GithubOAuthProvider implements OAuthProvider {
         redirect_uri: options.redirectUri
       })
     });
-    console.log('🚀 ~ GithubOAuthProvider ~ getAccessToken ~ response:', await response.json());
 
     if (!response.ok) {
       throw new Error(`GitHub OAuth error: ${response.statusText}`);
     }
+
     return response.json();
   }
 
@@ -70,15 +68,14 @@ export class GithubOAuthProvider implements OAuthProvider {
    */
   async getUserInfo(code: string, options: AuthUrlOptions): Promise<OAuthUserInfo> {
     const { access_token } = await this.getAccessToken(code, options);
-    console.log(1111)
-    const response = await fetch(`${this.apiBaseUrl}/user`, {
+    const response = await fetch(`https://api.github.com/user`, {
       headers: {
         Authorization: `Bearer ${access_token}`,
         Accept: 'application/json'
       }
     });
+
     const data = await response.json();
-    console.log("🚀 ~ GithubOAuthProvider ~ getUserInfo ~ data:", data)
 
     if (!response.ok) {
       throw new Error(`GitHub API error: ${response.statusText}`);

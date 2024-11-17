@@ -7,6 +7,23 @@ datasource db {
   url      = env("SQLITE_URL")
 }
 
+//用户
+model User {
+  id           String   @id @default(uuid())
+  email        String?  @unique
+  name         String?
+  avatar       String?
+  // 本地认证字段
+  password     String?
+  // OAuth 相关字段
+  providerId   String? // 第三方平台的用户ID
+  provider     String? // 'github', 'google' 等
+  accessToken  String? // 可选，如果需要保存访问令牌
+  refreshToken String? // 可选，如果需要保存刷新令牌
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
 //多维表格应用
 model BiApp {
   id     String    @id @default(cuid())
@@ -19,12 +36,13 @@ model BiApp {
 }
 
 model BiTable {
-  id      String @id @default(cuid())
+  id   String  @id @default(cuid())
   // 表名称
-  name    String? 
+  name String?
   // 
 
   biApp   BiApp  @relation(fields: [biAppId], references: [id])
   biAppId String
+
   @@map("bi_table")
 }
