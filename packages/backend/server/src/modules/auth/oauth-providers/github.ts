@@ -76,6 +76,7 @@ export class GithubOAuthProvider implements OAuthProvider {
     });
 
     const data = await response.json();
+    console.log('🚀 ~ GithubOAuthProvider ~ getUserInfo ~ data:', data);
 
     if (!response.ok) {
       throw new Error(`GitHub API error: ${response.statusText}`);

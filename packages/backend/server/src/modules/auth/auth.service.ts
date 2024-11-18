@@ -1,5 +1,7 @@
 import { BadRequestException, HttpException, HttpStatus, Injectable } from '@nestjs/common';
 
+import { PrismaService } from 'nestjs-prisma';
+
 import { GithubOAuthProvider } from './oauth-providers/github';
 import { AuthUrlOptions, OAuthUserInfo } from './oauth-providers/interface';
 
@@ -7,7 +9,10 @@ import { AuthUrlOptions, OAuthUserInfo } from './oauth-providers/interface';
 export class AuthService {
   private oauthProviders = new Map<string, any>();
 
-  constructor(private githubProvider: GithubOAuthProvider) {
+  constructor(
+    private githubProvider: GithubOAuthProvider,
+    private prisma: PrismaService
+  ) {
     this.oauthProviders.set('github', githubProvider);
   }
 
@@ -41,10 +46,17 @@ export class AuthService {
 
     // TODO: 在这里处理用户信息
     // 1. 检查用户是否存在
+
     // 2. 如果不存在则创建新用户
     // 3. 更新用户的OAuth信息
     // 4. 生成JWT token
 
     return userInfo;
+  }
+
+  async checkUserExist(userInfo: OAuthUserInfo) {
+    const user = await this.prisma.user.findUnique({
+      where: { email: userInfo.email }
+    });
   }
 }
