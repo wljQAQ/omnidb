@@ -3,11 +3,11 @@ import { BadRequestException, HttpException, HttpStatus, Injectable } from '@nes
 import { PrismaService } from 'nestjs-prisma';
 
 import { GithubOAuthProvider } from './oauth-providers/github';
-import { AuthUrlOptions, OAuthUserInfo } from './oauth-providers/interface';
+import { AuthUrlOptions, OAuthProvider, OAuthUserInfo } from './oauth-providers/interface';
 
 @Injectable()
 export class AuthService {
-  private oauthProviders = new Map<string, any>();
+  private oauthProviders = new Map<string, OAuthProvider>();
 
   constructor(
     private githubProvider: GithubOAuthProvider,
@@ -44,6 +44,9 @@ export class AuthService {
 
     const userInfo = await oauthProvider.getUserInfo(code, options);
 
+    const user = await this.getUserByOAuthAccount(userInfo);
+    console.log('🚀 ~ AuthService ~ handleOAuthCallback ~ user:', user);
+
     // TODO: 在这里处理用户信息
     // 1. 检查用户是否存在
 
@@ -54,9 +57,16 @@ export class AuthService {
     return userInfo;
   }
 
-  async checkUserExist(userInfo: OAuthUserInfo) {
-    const user = await this.prisma.user.findUnique({
-      where: { email: userInfo.email }
+  async getUserByOAuthAccount(userInfo: OAuthUserInfo) {
+    const { id, provider } = userInfo;
+    // 根据第三方平台的用户ID和提供商查找 users表中的用户
+    const oauthAccount = await this.prisma.oAuthAccount.findUnique({
+      where: { providerAccountId: id, provider },
+      include: {
+        user: true
+      }
     });
+
+    return oauthAccount;
   }
 }
