@@ -93,7 +93,14 @@ export class AuthService {
   async createOAuthAccount(userInfo: OAuthUserInfo, userId: string) {
     const accountData = pick(userInfo, ['provider', 'accessToken', 'refreshToken', 'expiresAt']);
     const oauthAccount = await this.prisma.oAuthAccount.create({
-      data: { ...accountData, providerAccountId: userInfo.id, userId },
+      data: {
+        provider: userInfo.provider,
+        providerAccountId: userInfo.id,
+        userId: userId
+        // accessToken: userInfo.accessToken,
+        // refreshToken: userInfo.refreshToken,
+        // expiresAt: userInfo.expiresAt
+      },
       include: {
         user: true
       }
