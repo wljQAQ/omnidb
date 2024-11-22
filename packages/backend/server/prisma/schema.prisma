@@ -26,12 +26,15 @@ model User {
 // 第三方登录
 model OAuthAccount {
   id                String    @id @default(uuid())
-  provider          String //第三方供应商 比如github，google等等
   userId            String    @map("user_id")
+  provider          String //第三方供应商 比如github，google等等
   providerAccountId String    @map("provider_account_id") // 第三方平台的用户 ID
   accessToken       String?   @map("access_token")
   refreshToken      String?   @map("refresh_token")
+  scope             String?
   expiresAt         DateTime? @map("expires_at")
+  createdAt         DateTime  @default(now()) @map("created_at")
+  updatedAt         DateTime  @updatedAt @map("updated_at")
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -58,7 +61,7 @@ model BiTable {
   // 
 
   biApp   BiApp  @relation(fields: [biAppId], references: [id])
-  biAppId String @map("bi_app_id") 
+  biAppId String @map("bi_app_id")
 
   @@map("bi_table")
 }

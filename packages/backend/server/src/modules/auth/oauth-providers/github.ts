@@ -74,9 +74,8 @@ export class GithubOAuthProvider implements OAuthProvider {
         Accept: 'application/json'
       }
     });
-
+    //TODO:过期时间
     const data = await response.json();
-    console.log('🚀 ~ GithubOAuthProvider ~ getUserInfo ~ data:', data);
 
     if (!response.ok) {
       throw new Error(`GitHub API error: ${response.statusText}`);
@@ -89,6 +88,7 @@ export class GithubOAuthProvider implements OAuthProvider {
       email,
       name,
       avatar: avatar_url,
+      accessToken: access_token,
       provider: 'github'
     };
   }
