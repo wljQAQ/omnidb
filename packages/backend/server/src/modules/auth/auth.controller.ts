@@ -20,7 +20,6 @@ export class AuthController {
   @Get('oauth/:provider')
   @CatchError()
   oauthLogin(@Param('provider') provider: string) {
-    console.log('🚀 ~ AuthController ~ oauthLogin ~ provider:', 221, provider);
     const authUrl = this.authService.getAuthorizationUrl(provider);
     return { url: authUrl };
   }
